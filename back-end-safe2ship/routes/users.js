@@ -23,6 +23,7 @@ module.exports = ({
         
         getUserByEmail(req.body.email)
             .then((user) => {
+                
                 if (user.length !== 0 && user[0].status !== 'deleted' && bcrypt.compareSync(req.body.password, user[0].password)) {
                     req.session.user_id = user[0]['system_id'];
                     
