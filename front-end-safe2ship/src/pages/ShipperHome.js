@@ -51,12 +51,12 @@ export default function ShipperHome(props) {
         
     {vpkg.v === 'all' && 
     <div className="m-5">
-    <div className="row justify-content-center">
-    <div className="col-sm-12 col-md-6">
-              <button type="button" onClick={() => props.hv_handler("postPackage")} className="btn btn-lg btn-primary">+ Post New Package</button>
-          </div>
-      <div className="col-12">
+    <div className="row justify-content-between">
+      <div className="col-sm-12 col-md-6">
         <h2>Packages available for pickup</h2>
+      </div>
+      <div className="col-sm-12 col-md-6">
+        <button type="button" onClick={() => props.hv_handler("postPackage")} className="btn btn-lg btn-primary">+ Post New Package</button>
       </div>
     </div>
       { packages }
