@@ -3,7 +3,7 @@ import PackageListItem from "../components/PackageListItem";
 import Package from "../components/Package";
 import PackagePage from "./PackagePage";
 
-export default function ShipperHome(props) {
+export default function Orders(props) {
 
   console.log('this # of pkgs', props.udata.packages.length) //------------------------------
 

@@ -4,10 +4,17 @@ import classNames from "classnames";
 
 export default function Menu(props) {
 
-  const vSwitch = (user) => {  //yet to rectify
-    if (user[0].status === 'shipper') {
-      props.hv_handler('orderCart')
+  const vSwitch = (user, cart) => {  //yet to rectify
+    
+    if (cart && user[0].status === 'shipper'){
+      props.hv_handler('orderCart');
+      return;
+    } else if (user[0].status === 'shipper') {
+      props.hv_handler('shipperHome');
+      return;
     }
+      
+    props.hv_handler('customerHome');
   }
   
   //  className="btn disabled"
@@ -29,7 +36,7 @@ export default function Menu(props) {
         <li><hr className="dropdown-divider"/></li>
         <li><button className={classNames("dropdown-item danger", {"disabled": o, })} type="button" onClick={(e) => props.logoutHandler(props)} > <i className="bi bi-eject"></i>logout</button></li>
         <li><hr className="dropdown-divider"/></li>
-        <li><button className={classNames("dropdown-item", {"disabled": c || o, })} type="button" onClick={(e) => {props.setPkgsview(() => props.ordercart.active); vSwitch(props.user)}}> <i className="bi bi-chevron-left"></i> order Cart</button></li>
+        <li><button className={classNames("dropdown-item", {"disabled": c || o, })} type="button" onClick={(e) => {props.setPkgsview(() => props.ordercart.active); vSwitch(props.user, true)}}> <i className="bi bi-chevron-left"></i> Order Cart</button></li>
         <li><button className={classNames("dropdown-item", {"disabled": o, })} type="button" onClick={(e) => {props.setPkgsview(() => props.pkgs.active); vSwitch(props.user)}}> <i className="bi bi-chevron-left"></i> packages</button></li>
         <li><button className={classNames("dropdown-item", {"disabled": c || o })} type="button" onClick={(e) => vSwitch(props.user)}> <i className="bi bi-chevron-left"></i> order History</button></li>
         <li><button className={classNames("dropdown-item", {"disabled": o })} type="button" onClick={(e) => {props.setPkgsview(() => [...props.pkgs.declined, ...props.pkgs.delivered]); vSwitch(props.user)}}> <i className="bi bi-chevron-left"></i> package History</button></li>
