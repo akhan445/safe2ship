@@ -5,7 +5,9 @@ import classNames from "classnames";
 export default function Menu(props) {
 
   const vSwitch = (user) => {  //yet to rectify
-    user[0].status === 'customer' ? props.hv_handler('customerHome') : props.hv_handler('shipperHome')
+    if (user[0].status === 'shipper') {
+      props.hv_handler('orderCart')
+    }
   }
   
   //  className="btn disabled"

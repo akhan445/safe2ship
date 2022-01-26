@@ -12,6 +12,7 @@ import ShipperHome from "./pages/ShipperHome";
 import CustomerHome from "./pages/CustomerHome";
 import PostPackage from "./pages/PostPackage";
 import Profile from "./components/Profile";
+import OrderCart from "./pages/OrderCart";
 import './App.css';
 
 
@@ -126,6 +127,7 @@ if (pkgs.length !== 0) {
         {hview.v === "shipperHome" && <ShipperHome  {...props}/>}
         {hview.v === "packagePage" && <Package {...props}/>}
         {hview.v === "postPackage" && <PostPackage {...props}/>}
+        {hview.v === "orderCart" && <OrderCart {...props}/>}
       </section>
 
 
