@@ -51,8 +51,6 @@ export default function SignIn(props) {
           user.data.user[0].status === 'customer' ? props.hv_handler('customerHome') : props.hv_handler('shipperHome');
 
           console.log('this important data ===>', user.data) //---------------------------------
-          //switch to user view with userinfo.rows and set it to state // or pks queue view
-          // props.setUser(prev => ({...prev,  ...user.data }))
           
           console.log('this important status ===>', user.data.user[0].status) //---------------------------------
       

@@ -17,13 +17,13 @@ module.exports = ({
    
 // ----------------------------## Routes userGET----------------------------------
     router.post('/users/signin', (req, res) => {
+        console.log(req.body)
         if (req.body.email === '' || req.body.email.split('').includes(' ')) res.json({error: "Incorrect email", code: "xe"});
         if (req.body.password === '' || req.body.password.split('').includes(' ')) res.json({error: "Incorrect password", code: "xpw"});
         
         getUserByEmail(req.body.email)
             .then((user) => {
-                
-                if (user.length !== 0 && user[0].satus !== 'deleted' && bcrypt.compareSync(req.body.password, user[0].password)) {
+                if (user.length !== 0 && user[0].status !== 'deleted' && bcrypt.compareSync(req.body.password, user[0].password)) {
                     req.session.user_id = user[0]['system_id'];
                     
                     let userInfo = {"user": user}
@@ -40,7 +40,7 @@ module.exports = ({
 
                 // ---------------------------------------------------------------------
 
-                } else if (user.length !== 0 && user[0].satus === 'deleted' || user.length === 0){
+                } else if (user.length !== 0 && user[0].status === 'deleted' || user.length === 0){
                     res.json({error: "The requested account does not exist. Please go to Sign-Up!", code: "xac"})
                 } else {
                     res.json({error: "incorrect passward", code: "xpw"})
