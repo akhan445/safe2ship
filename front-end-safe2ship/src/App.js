@@ -13,6 +13,7 @@ import CustomerHome from "./pages/CustomerHome";
 import PostPackage from "./pages/PostPackage";
 import Profile from "./components/Profile";
 import OrderCart from "./pages/OrderCart";
+import OrderHistory from "./pages/OrderHistory";
 import './App.css';
 
 
@@ -128,6 +129,7 @@ if (pkgs.length !== 0) {
         {hview.v === "packagePage" && <Package {...props}/>}
         {hview.v === "postPackage" && <PostPackage {...props}/>}
         {hview.v === "orderCart" && <OrderCart {...props}/>}
+        {hview.v === "orderHistory" && <OrderHistory {...props}/>} 
       </section>
 
 

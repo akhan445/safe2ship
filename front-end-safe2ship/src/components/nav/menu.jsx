@@ -4,12 +4,15 @@ import classNames from "classnames";
 
 export default function Menu(props) {
 
-  const vSwitch = (user, cart) => {  //yet to rectify
+  const vSwitch = (user, page) => {  //yet to rectify
     
-    if (cart && user[0].status === 'shipper'){
+    if (page === 'orderCart' && user[0].status === 'shipper'){
       props.hv_handler('orderCart');
       return;
-    } else if (user[0].status === 'shipper') {
+    } else if (page === 'orderHistory' && user[0].status === 'shipper') {
+      props.hv_handler('orderHistory');
+      return;
+    } else if(user[0].status === 'shipper') {
       props.hv_handler('shipperHome');
       return;
     }
@@ -36,9 +39,9 @@ export default function Menu(props) {
         <li><hr className="dropdown-divider"/></li>
         <li><button className={classNames("dropdown-item danger", {"disabled": o, })} type="button" onClick={(e) => props.logoutHandler(props)} > <i className="bi bi-eject"></i>logout</button></li>
         <li><hr className="dropdown-divider"/></li>
-        <li><button className={classNames("dropdown-item", {"disabled": c || o, })} type="button" onClick={(e) => {props.setPkgsview(() => props.ordercart.active); vSwitch(props.user, true)}}> <i className="bi bi-chevron-left"></i> Order Cart</button></li>
+        <li><button className={classNames("dropdown-item", {"disabled": c || o, })} type="button" onClick={(e) => {props.setPkgsview(() => props.ordercart.active); vSwitch(props.user, 'orderCart')}}> <i className="bi bi-chevron-left"></i> Order Cart</button></li>
         <li><button className={classNames("dropdown-item", {"disabled": o, })} type="button" onClick={(e) => {props.setPkgsview(() => props.pkgs.active); vSwitch(props.user)}}> <i className="bi bi-chevron-left"></i> packages</button></li>
-        <li><button className={classNames("dropdown-item", {"disabled": c || o })} type="button" onClick={(e) => vSwitch(props.user)}> <i className="bi bi-chevron-left"></i> order History</button></li>
+        <li><button className={classNames("dropdown-item", {"disabled": c || o })} type="button" onClick={(e) => vSwitch(props.user, 'orderHistory')}> <i className="bi bi-chevron-left"></i> order History</button></li>
         <li><button className={classNames("dropdown-item", {"disabled": o })} type="button" onClick={(e) => {props.setPkgsview(() => [...props.pkgs.declined, ...props.pkgs.delivered]); vSwitch(props.user)}}> <i className="bi bi-chevron-left"></i> package History</button></li>
         <li><button className={classNames("dropdown-item", {"disabled": o })} type="button" > <i className="bi bi-chevron-left"></i> messages</button></li>
         <li><button className={classNames("dropdown-item", {"disabled": o })} type="button" onClick={(e) => props.hv_handler('profile')} > <i className="bi bi-chevron-left"></i> my Profile</button></li>

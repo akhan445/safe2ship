@@ -3,14 +3,14 @@ import PackageListItem from "../components/PackageListItem";
 
 export default function OrderCart(props) {
   
-  console.log(props);
+  console.log(props.ordercart.active);
   // console.log('this # of pkgs', JSON.stringify(props.udata.packages[0])) //------------------------------
 
   const packages = [];
-  let key = props.udata.packages.length;
-  props.udata.packages.forEach(pkg => {
+  let key = props.ordercart.active.length;
+  props.ordercart.active.forEach(pkg => {
     key += 1;
-    if (pkg.status === 'ready') packages.push(<PackageListItem key={key} {...pkg} />);
+    packages.push(<PackageListItem key={key} {...pkg} />);
   });
   
   return (
